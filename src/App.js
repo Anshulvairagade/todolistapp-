@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const getLocalTodos = () => {
-  const list = localStorage.getItem('list');
+  const list = localStorage.getItem("list");
   if (list) {
-    return JSON.parse(localStorage.getItem('list'));
+    return JSON.parse(localStorage.getItem("list"));
+  } else {
+    return [];
   }
-  else {
-    return []
-  }
-}
+};
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState(getLocalTodos());
@@ -19,14 +18,12 @@ function App() {
     e.preventDefault();
     if (editId) {
       const editedTodo = todos.map((elem) =>
-        elem.id === editId ? {id: elem.id, data: todo} : elem
+        elem.id === editId ? { id: elem.id, data: todo } : elem
       );
       setTodos(editedTodo);
-      setEditId(null);  
+      setEditId(null);
       setTodo("");
-      
-    }
-    else if (todo !== "") {
+    } else if (todo !== "") {
       const allInputData = {
         id: new Date().getTime().toString(),
         data: todo,
@@ -45,11 +42,11 @@ function App() {
     setEditId(id);
   };
   const clearAll = () => {
-    setTodos([])
-  }
+    setTodos([]);
+  };
   useEffect(() => {
-    localStorage.setItem('list', JSON.stringify(todos))
-  }, [todos])
+    localStorage.setItem("list", JSON.stringify(todos));
+  }, [todos]);
   return (
     <div className="App">
       <div className="container">
@@ -65,18 +62,25 @@ function App() {
         </form>
         <ul className="allTodos">
           {todos.map((t) => (
-            <li className="singleTodo">
-              <span className="todoText">{t.data}</span>
-              <button className="edit" onClick={() => editTodo(t.id)}>
-                Edit
-              </button>
-              <button className="delete" onClick={() => deleteTodo(t.id)}>
-                Delete
-              </button>
-            </li>
+            <span>
+              <div className="btns">
+                <button className="edit btn" onClick={() => editTodo(t.id)}>
+                  Edit
+                </button>
+                <button className="delete btn" onClick={() => deleteTodo(t.id)}>
+                  Delete
+                </button>
+              </div>
+              <li className="singleTodo">
+                <span className="todoText">{t.data}</span>
+              </li>
+              
+            </span>
           ))}
         </ul>
-        <button className="clearAll" onClick={clearAll}>Clear All todos</button>
+        <button className="clearAll" onClick={clearAll}>
+          Clear All todos
+        </button>
       </div>
     </div>
   );
