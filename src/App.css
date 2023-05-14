@@ -90,7 +90,7 @@ button:hover{
   margin-top: 10px;
   margin-bottom: 0;
   width: 30%;
-  margin-left: 70%;
+  margin-left: 75%;
   position: relative;
   top: 20px;
  
@@ -112,7 +112,7 @@ button:hover{
     background-color: #5dadf8;
     padding: 10px 20px;
     border-radius: 10px;
-    width: 340px;
+    width: 280px;
     display: flex;
     overflow-y: scroll;
     align-items: center;
@@ -122,7 +122,7 @@ button:hover{
   .btns{
     /* width: 20%; */
     display: flex;
-
+    margin-left: 62%;
   }
  
 }
